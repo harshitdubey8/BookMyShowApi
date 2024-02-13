@@ -91,7 +91,6 @@ router.put("/changePassword", async function (req, res) {
 });
 
 // update user details
-
 router.put("/user/:id", async function (req, res) {
   try {
     const userId = req.params.id;
@@ -102,7 +101,7 @@ router.put("/user/:id", async function (req, res) {
     };
 
     const resResult = await userModel.findByIdAndUpdate(userId, userObj);
-
+    console.log(resResult);
     if (resResult) {
       console.log("[Update] - Record updated in Database");
       return res.status(200).json({ message: "Record updated in Database" });

@@ -8,10 +8,13 @@ mongoose.connect("mongodb://127.0.0.1:27017/BookMyShow");
 var Schema = mongoose.Schema;
 
 // Schema properties should be match mongodb collection properties
-var reviewsModelSchema = new Schema(
+var bookingModelSchema = new Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
     movieId: { type: mongoose.Schema.Types.ObjectId, ref: "movie" },
+    theatreId: { type: mongoose.Schema.Types.ObjectId, ref: "theater" },
+    seats: { type: Number },
+    grandTotal: { type: Number },
   },
 
   { versionKey: false }
@@ -19,7 +22,7 @@ var reviewsModelSchema = new Schema(
 
 // Create Model Object
 // "review"   --- collection name in mongodb
-var ReviewModel = mongoose.model("review", reviewsModelSchema);
+var BookingModel = mongoose.model("booking", bookingModelSchema);
 
-// Exporting ReviewModel
-module.exports = ReviewModel;
+// Exporting BookingModel
+module.exports = BookingModel;

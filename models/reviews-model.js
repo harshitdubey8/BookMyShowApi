@@ -11,9 +11,9 @@ var Schema = mongoose.Schema;
 var reviewsModelSchema = new Schema(
   {
     message: { type: String },
-    userRating: { type: String },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
     movieId: { type: mongoose.Schema.Types.ObjectId, ref: "movie" },
+    userRating: { type: Number },
   },
 
   { versionKey: false }
