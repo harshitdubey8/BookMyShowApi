@@ -48,4 +48,23 @@ router.get("/bookings", async (req, res) => {
   }
 });
 
+router.get("/bookings/:userId", async (req, res) => {
+  const userId = req.params.userId; // Access userId from route parameters
+  try {
+    // Find all bookings in the database with the provided userId
+    const bookings = await BookingModel.find({ userId })
+      .populate("userId")
+      .populate("movieId")
+      .populate("theatreId");
+
+    // Send the bookings as response
+    res.status(200).json(bookings);
+  } catch (error) {
+    // Send error response if an error occurs
+    console.error("[Get Bookings by UserID] - Error:", error.message);
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", message: error.message });
+  }
+});
 module.exports = router;
